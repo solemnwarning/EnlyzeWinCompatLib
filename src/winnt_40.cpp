@@ -7,6 +7,10 @@
 // This file implements required APIs not available in Windows NT 4.0 RTM.
 #include "EnlyzeWinCompatLibInternal.h"
 
+#if defined(__clang__) && __has_warning("-Wcast-function-type-mismatch")
+#pragma clang diagnostic ignored "-Wcast-function-type-mismatch"
+#endif
+
 typedef BOOL (WINAPI *PFN_GETFILESIZEEX)(HANDLE hFile, PLARGE_INTEGER lpFileSize);
 typedef BOOL (WINAPI *PFN_INITIALIZECRITICALSECTIONANDSPINCOUNT)(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount);
 typedef BOOL (WINAPI *PFN_SETFILEPOINTEREX)(HANDLE hFile, LARGE_INTEGER liDistanceToMove, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod);

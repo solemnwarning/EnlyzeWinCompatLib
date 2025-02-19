@@ -7,6 +7,10 @@
 // This file implements required APIs not available in Windows XP RTM (NT 5.1).
 #include "EnlyzeWinCompatLibInternal.h"
 
+#if defined(__clang__) && __has_warning("-Wcast-function-type-mismatch")
+#pragma clang diagnostic ignored "-Wcast-function-type-mismatch"
+#endif
+
 typedef PVOID (WINAPI *PFN_DECODEPOINTER)(PVOID Ptr);
 typedef PVOID (WINAPI *PFN_ENCODEPOINTER)(PVOID Ptr);
 

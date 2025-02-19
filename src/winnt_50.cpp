@@ -7,6 +7,10 @@
 // This file implements required APIs not available in Windows 2000 RTM (NT 5.0).
 #include "EnlyzeWinCompatLibInternal.h"
 
+#if defined(__clang__) && __has_warning("-Wcast-function-type-mismatch")
+#pragma clang diagnostic ignored "-Wcast-function-type-mismatch"
+#endif
+
 typedef struct _COMPAT_SLIST_ENTRY
 {
     struct _COMPAT_SLIST_ENTRY* Next;

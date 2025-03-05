@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -21,6 +21,9 @@
     <ClCompile Include="static_init.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="winnt_61.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -38,6 +41,9 @@
       <Filter>Source Files</Filter>
     </MASM>
     <MASM Include="winnt_40_forwarders.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="winnt_61_forwarders.asm">
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>

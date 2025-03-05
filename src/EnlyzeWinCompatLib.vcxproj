@@ -15,6 +15,7 @@
     <ClCompile Include="winnt_40.cpp" />
     <ClCompile Include="winnt_50.cpp" />
     <ClCompile Include="winnt_51.cpp" />
+    <ClCompile Include="winnt_61.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnlyzeWinCompatLibInternal.h" />
@@ -24,6 +25,7 @@
     <MASM Include="winnt_40_forwarders.asm" />
     <MASM Include="winnt_50_forwarders.asm" />
     <MASM Include="winnt_51_forwarders.asm" />
+    <MASM Include="winnt_61_forwarders.asm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

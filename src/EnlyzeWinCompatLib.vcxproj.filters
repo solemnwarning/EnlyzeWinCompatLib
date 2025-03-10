@@ -24,12 +24,27 @@
     <ClCompile Include="winnt_61.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="winnt_52.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnlyzeWinCompatLibInternal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EarlyArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EarlyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticLock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,6 +59,12 @@
       <Filter>Source Files</Filter>
     </MASM>
     <MASM Include="winnt_61_forwarders.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="winnt_52_forwarders.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="fls_forwarders.asm">
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>

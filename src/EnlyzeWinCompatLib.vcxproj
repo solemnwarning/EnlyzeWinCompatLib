@@ -11,20 +11,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="fls.cpp" />
     <ClCompile Include="static_init.c" />
     <ClCompile Include="winnt_40.cpp" />
     <ClCompile Include="winnt_50.cpp" />
     <ClCompile Include="winnt_51.cpp" />
+    <ClCompile Include="winnt_52.cpp" />
     <ClCompile Include="winnt_61.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EarlyArray.h" />
+    <ClInclude Include="EarlyMap.h" />
     <ClInclude Include="EnlyzeWinCompatLibInternal.h" />
+    <ClInclude Include="StaticLock.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <MASM Include="fls_forwarders.asm" />
     <MASM Include="winnt_40_forwarders.asm" />
     <MASM Include="winnt_50_forwarders.asm" />
     <MASM Include="winnt_51_forwarders.asm" />
+    <MASM Include="winnt_52_forwarders.asm" />
     <MASM Include="winnt_61_forwarders.asm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

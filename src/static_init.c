@@ -10,7 +10,6 @@
 #include <limits.h>
 #include <windows.h>
 
-
 long _Init_global_epoch = LONG_MIN;
 __declspec(thread) long _Init_thread_epoch = LONG_MIN;
 
@@ -27,21 +26,27 @@ __declspec(thread) long _Init_thread_epoch = LONG_MIN;
 */
 void _Init_thread_header (volatile int *ptss)
 {
+    int spin_count = 0;
+
     while (1) {
-        /* Try to acquire the first initialization lock */
-        int oldTss = _InterlockedCompareExchange((long *)ptss, -1, 0);
-        if (oldTss == -1) {
-            /* Busy, wait for the other thread to do the initialization */
-            SwitchToThread();
-            continue;
-        } else if (oldTss == 0) {
-            /* We acquired the lock and the caller will do the initialization */
+        /* Try to acquire the initialization lock */
+        long oldTss = _InterlockedCompareExchange((volatile long *)ptss, -1, 0);
+        
+        if (oldTss == 0) {
+            /* We acquired the lock. Caller proceeds with initialization. */
             return;
+        } 
+        else if (oldTss == -1) {
+            if (spin_count < 4000) {
+                YieldProcessor(); 
+                spin_count++;
+            } else {
+                Sleep(1); 
+            }
+            continue;
         }
 
-        /* The initialization is complete and the caller will skip it.
-           Update the epoch so this call can be skipped in the future, it
-           only needs to run once per thread. */
+        /* The initialization is complete, update the epoch so this call can be skipped in the future. */
         _Init_thread_epoch = _Init_global_epoch;
         return;
     }
@@ -49,8 +54,15 @@ void _Init_thread_header (volatile int *ptss)
 
 void _Init_thread_footer (volatile int *ptss)
 {
+    /* Increment the global epoch */
+    long new_epoch = _InterlockedIncrement(&_Init_global_epoch);
+    while (new_epoch == 0 || new_epoch == -1) {
+        new_epoch = _InterlockedIncrement(&_Init_global_epoch);
+    }
+
+    _Init_thread_epoch = new_epoch;
     /* Initialization is complete */
-    _Init_thread_epoch = *ptss = _InterlockedIncrement(&_Init_global_epoch);
+    _InterlockedExchange((volatile long *)ptss, new_epoch);
 }
 
 void _Init_thread_abort (volatile int *ptss)
